@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="anime.css">
+    
+    <title>Cold Mail Generator</title>
+    <style>
+        h2{
+            padding-left: 10%;
+        }
+        body{
+            margin: 0 0;
+            background: #98D8AA;
+        }
+        .logo{
+            margin-left: 30px;
+            flex-grow:1 ;
+        }
+        .logo-img{
+            width: 110px;
+            height: 100px;
+        }
+        nav{
+            display: flex;
+            justify-content: space-between;
+        }
+        .team-details{
+            margin-right: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .link{
+            margin-left: 50px;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 160%;
+            /* identical to box height, or 32px */
+            letter-spacing: 0.11em;
+            color: black;
+            cursor: pointer;
+            margin-right: 30px;
+            transition: all;
+            transition-duration: 0.7s;
+            border-radius: 10px;
+            padding: 10px 20px;
+            transition-timing-function: ease-in;
+
+        }
+        a:link {
+            text-decoration: none;
+        }
+
+        a:visited {
+            text-decoration: none;
+        }
+
+        .link:hover {
+            background: #F7D060;
+        }
+
+        .main-intro{
+            margin: 10px 40px;
+        }
+
+        .main-intro-text{
+            
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 45px;
+            line-height: 130%;
+            /* identical to box height, or 72px */
+            text-align: center;
+            text-transform: capitalize;
+            transition-timing-function: ease-in;
+            color: black;
+            margin-bottom: 20px;
+        }
+        /* .main-intro-text:hover{
+            text-decoration: underline;
+        } */
+        .main-intro-desc{
+            
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 160%;
+            /* identical to box height, or 72px */
+            text-align: center;
+            text-transform: capitalize;
+
+            color: rgb(58, 56, 56);
+        }
+
+        .form-sec{
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+            margin: 30px 50px;
+            padding: 10px 0;
+            /* border: 1px solid black; */
+            border-radius: 20px;
+            background: rgba(237, 237, 237, 0.3);
+            padding-bottom: 20px;
+        }
+
+        .form-label {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 146%;
+            /* or 29px */
+
+            text-transform: capitalize;
+        }
+
+        .form-element{
+            margin-top: 10px;
+        }
+        .input-field {
+            border: 0.5px solid rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            width: 90%;
+            padding: 10px 10px;
+            margin-top: 10px;
+            font-size: 19px;
+            width: 900px;
+        }
+        .input-field:focus{
+            outline: none;
+        }
+
+        #start-btn{
+            padding: 10px 20px;
+            color: white;
+            background: #FF6D60;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 150%;
+            border: none;
+            border-radius: 10px;
+            display: block;
+        }
+
+        #start-btn1{
+            padding: 10px 20px;
+            color: white;
+            background: #FF6D60;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 150%;
+            border: none;
+            border-radius: 10px;
+            display: block;
+        }
+        #instructions{
+            font-style: normal;
+            font-size: 20px;
+        }
+
+        .submit-btn{
+            padding: 10px 20px;
+            color: white;
+            background: #FF6D60;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 146%;
+            border: none;
+            border-radius: 10px;
+        }
+        .submit-btn-div{
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .voice-Form-Button{
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 130%;
+            /* identical to box height, or 72px */
+            /* text-align: center; */
+            text-transform: capitalize;
+            display: inline;
+            color: white;
+            margin-bottom: 20px;
+            padding: 20px 30px;
+            border-radius: 20px;
+            background-color: #F7D060;
+            margin: 50px;
+            cursor: pointer;
+        }
+
+        .form-sec-voice{
+            display: none;
+        }
+        
+
+
+#loaders{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#loader {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  position: relative;
+  border: 4px solid #Fff;
+  top: 50%;
+  animation: loader 2s infinite ease;
+}
+
+.loader-inner {
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  background-color: #fff;
+  animation: loader-inner 2s infinite ease-in;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  
+  25% {
+    transform: rotate(180deg);
+  }
+  
+  50% {
+    transform: rotate(180deg);
+  }
+  
+  75% {
+    transform: rotate(360deg);
+  }
+  
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-inner {
+  0% {
+    height: 0%;
+  }
+  
+  25% {
+    height: 0%;
+  }
+  
+  50% {
+    height: 100%;
+  }
+  
+  75% {
+    height: 100%;
+  }
+  
+  100% {
+    height: 0%;
+  }
+}
+    </style>
+</head>
+<body>
+    
+
+    <nav>
+        <div class="logo">
+            <img class="logo-img" src="/Untitled_design__2_-removebg-preview.png" alt="">
+        </div>
+        <div class="team-details">
+            <a href="" class="link">Github</a>
+            <a href="" class="link">LinkTree</a>
+        </div>
+    </nav>
+
+    <section class="main-intro">
+        <h1 class="main-intro-text">Cold Mail Generator</h1>
+        <h1 class="main-intro-desc">Cold mailing is not hectic work anymore. Elevate your cold emailing with our AI tool! Generate high level emails in seconds using voice or text commands. Streamline your outreach and achieve better results. 
+            Get started with our advanced technology today!</h1>
+    </section>
+
+    <div id="loaders">
+        <span id="loader"><span class="loader-inner"></span></span><!-- Loading square for squar.red network -->
+    </div>
+
+    <form action="/form-respone" method="post" class="form-sec" id="form-sec">
+        
+        <div class="form-element">
+            <label for="userName" class="form-label">Your Name*</label> <br>
+        <input type="text" name="userName" id="userName" class="input-field"
+            placeholder="Full Name" required>
+        </div>
+        <div class="form-element">
+            <label for="designation" class="form-label">Designation Applying for*</label> <br>
+        <input type="text" name="designation" id="designation" class="input-field"
+            placeholder="eg. ML intern, company co-founder" required>
+        </div>
+        <div class="form-element">
+            <label for="currentWork" class="form-label">What are you currently doing*</label> <br>
+        <input type="text" name="currentWork" id="currentWork" class="input-field"
+            placeholder="eg. studying college or freelancing" required>
+        </div>
+        
+        <div class="form-element">
+            <label for="skills" class="form-label">skills*</label> <br>
+        <input type="text" name="skills" id="skills" class="input-field"
+            placeholder="eg. coding(languages-python, javascript), communication, " required>
+        </div>
+        <div class="form-element">
+            <label for="project" class="form-label">Describe your recent project you worked on(optional)</label> <br>
+        <input type="text" name="project" id="project" class="input-field"
+            placeholder="eg. in one-two lines" >
+        </div>
+        <div class="form-element">
+            <label for="description" class="form-label">Describe about yourself(optional)</label> <br>
+        <!-- <input type="text" name="primary-role" id="current-work" class="input-field"
+            placeholder="eg. in one-two lines"> -->
+            <textarea name="description" id="description" cols="30" rows="10" class="input-field" placeholder="a brief description or a pitch"></textarea required>
+        </div>
+       
+        <div class="form-element">
+            <label for="gitHub" class="form-label">GitHub Link</label> <br>
+        <input type="text" name="gitHub" id="gitHub" class="input-field"
+            placeholder="https://" required>
+        </div>
+        <div class="form-element">
+            <label for="linkedIn" class="form-label">LinkedIn Link</label> <br>
+        <input type="text" name="linkedIn" id="linkedIn" class="input-field"
+            placeholder="https://" required>
+        </div>
+        <div class="form-element">
+            <label for="twitter" class="form-label">Twitter Link</label> <br>
+        <input type="text" name="twitter" id="twitter" class="input-field"
+            placeholder="https://" required>
+        </div>
+        <div class="form-element">
+            <label for="linkTree" class="form-label">Link Tree</label> <br>
+        <input type="text" name="linkTree" id="linktree" class="input-field"
+            placeholder="I know you lazy person🙂! just give your link tree" required>
+        </div>
+        <div class="form-element">
+            <label for="recipientName" class="form-label">Recipient's Name</label> <br>
+        <input type="text" name="recipientName" id="recipientName" class="input-field"
+            placeholder="Name of the person you're sending mail to" required>
+        </div>
+        <div class="form-element">
+            <label for="recipientMail" class="form-label">Recipient's Mail</label> <br>
+        <input type="text" name="recipientMail" id="recipientMail" class="input-field"
+            placeholder="Mail of the person you're sending mail to" required>
+        </div>
+        <div class="form-element submit-btn-div"><button type="submit" id="submit-btn" class="submit-btn">Generate Mail</button></div>
+
+    </form>
+    
+
+     <div class="voice">
+        <h2 class="voice-Form-Button" id="voice-btn" onclick="openVoiceForm()">Generate using voice:</h2>
+<form action="/form-response-voice" method="post" class="form-sec form-sec-voice" id="form-sec-voice">
+    <div class="form-element">
+        <label for="userName2" class="form-label">Your Name*</label> <br>
+    <input type="text" name="userName2" id="userName2" class="input-field"
+        placeholder="Full Name" required>
+    </div>
+    <div class="form-element">
+        <label for="designation2" class="form-label">Designation Applying for*</label> <br>
+    <input type="text" name="designation2" id="designation2" class="input-field"
+        placeholder="eg. ML intern, company co-founder" required>
+    </div>
+        <div class="form-element">
+            <label for="description2" class="form-label">Describe about yourself in voice(optional)</label> <br>
+        <!-- <input type="text" name="primary-role" id="current-work" class="input-field"
+            placeholder="eg. in one-two lines"> -->
+            <textarea name="description2" cols="30" rows="10" class="input-field" id="form-text2" placeholder="Too lazy to type? just talk it out"></textarea>
+            <button id="start-btn1" type="button">Talk!</button>
+        <p id="instructions">press the button to talk</p>
+        </div>
+        <div class="form-element">
+            <label for="gitHub2" class="form-label">GitHub Link</label> <br>
+        <input type="text" name="gitHub2" id="gitHub2" class="input-field"
+            placeholder="https://" required>
+        </div>
+        <div class="form-element">
+            <label for="linkedIn2" class="form-label">LinkedIn Link</label> <br>
+        <input type="text" name="linkedIn2" id="linkedIn2" class="input-field"
+            placeholder="https://" required>
+        </div>
+        <div class="form-element">
+            <label for="twitter2" class="form-label">Twitter Link</label> <br>
+        <input type="text" name="twitter2" id="twitter2" class="input-field"
+            placeholder="https://" required>
+        </div>
+        <div class="form-element">
+            <label for="linkTree2" class="form-label">Link Tree</label> <br>
+        <input type="text" name="linkTree2" id="linktree2" class="input-field"
+            placeholder="I know you lazy person🙂! just give your link tree" required>
+        </div>
+        <div class="form-element">
+            <label for="recipientName2" class="form-label">Recipient's Name</label> <br>
+        <input type="text" name="recipientName2" id="recipientName2" class="input-field"
+            placeholder="Name of the person you're sending mail to" required>
+        </div>
+        <div class="form-element">
+            <label for="recipientMail2" class="form-label">Recipient's Mail</label> <br>
+        <input type="text" name="recipientMail2" id="recipientMail2" class="input-field"
+            placeholder="Mail of the person you're sending mail to" required>
+        </div>
+        <div class="form-element submit-btn-div"><button type="submit" id="submit-btn1" class="submit-btn">Generate Mail</button></div>
+
+    </form>
+</div>  
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    var speechReg = window.webkitSpeechRecognition ;
+    var reg = new speechReg();
+
+    var textBox = $('#form-text2');
+    var ins = $('#instructions');
+    var content = '';
+
+    reg.continuous = true;
+
+    reg.onstart = function (){
+        ins.text('voice recognition is on');
+    }
+    reg.onspeechend = function(){
+        ins.text('no activity');
+    }
+
+    reg.onerror = function (){
+        ins.text('try again error record');
+    }
+
+    reg.onresult = function (){
+        var current = event.resultIndex;
+
+        var tranScript = event.results[current][0].transcript;
+
+        console.log(tranScript);
+        content += tranScript;
+
+        textBox.val(content);
+    }
+
+    $('#start-btn1').click(function (event) {
+        if(content.length){
+            content += '';
+
+        }
+        reg.start();
+    })
+
+
+
+//     
+const loaders = document.getElementById("loaders");
+loaders.style.display = "none";
+// Get form element
+const formSec = document.getElementById('form-sec');
+let voiceFormOpen = false;
+let voiceForm = document.getElementById('form-sec-voice');
+// Get all form elements
+const userName = document.getElementById('userName');
+const designation = document.getElementById('designation');
+const currentWork = document.getElementById('currentWork');
+const skills = document.getElementById('skills');
+const project = document.getElementById('project');
+const description = document.getElementById('description');
+const gitHub = document.getElementById('gitHub');
+const linkedIn = document.getElementById('linkedIn');
+const twitter = document.getElementById('twitter');
+const linkTree = document.getElementById('linkTree');
+const recipientName = document.getElementById('recipientName');
+const recipientMail = document.getElementById('recipientMail');
+
+// Add event listener to the form submit button
+formSec.addEventListener('submit', (event) => {
+  // Prevent default form submission
+  event.preventDefault();
+  
+  // Check if name is entered
+  if (userName.value.trim() === '') {
+    alert('Please enter your name');
+    userName.focus();
+    return;
+  }
+  
+  // Check if designation is entered
+  if (designation.value.trim() === '') {
+    alert('Please enter the designation you are applying for');
+    designation.focus();
+    return;
+  }
+  
+  // Check if current work is entered
+  if (currentWork.value.trim() === '') {
+    alert('Please enter your current work');
+    currentWork.focus();
+    return;
+  }
+  
+  // Check if skills are entered
+  if (skills.value.trim() === '') {
+    alert('Please enter your skills');
+    skills.focus();
+    return;
+  }
+  
+  // Check if recipient name is entered
+  if (recipientName.value.trim() === '') {
+    alert('Please enter recipient name');
+    recipientName.focus();
+    return;
+  }
+  
+  // Check if recipient mail is entered and valid
+  if (recipientMail.value.trim() === '') {
+    alert('Please enter recipient mail');
+    recipientMail.focus();
+    return;
+  } else {
+    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!recipientMail.value.trim().match(mailFormat)) {
+      alert('Please enter a valid email address');
+      recipientMail.focus();
+      return;
+    }
+  }
+  
+  // If all fields are valid, submit the form
+  formSec.submit();
+});
+
+
+function validURL(url) {
+    const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+        '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+    return !!pattern.test(url);
+}
+
+function validEmail(email) {
+    const pattern = /^\S+@\S+\.\S+$/;
+    return pattern.test(email);
+}
+
+
+function openVoiceForm(){
+    if(!voiceFormOpen){
+        voiceForm.style.display = 'flex';
+        voiceFormOpen = true;
+    }
+    else{
+        voiceForm.style.display = 'none';
+        voiceFormOpen = false;
+    }
+
+}
+
+//get form elemt for voice
+
+const formSecVoice = document.getElementById('form-sec-voice');
+
+// Get all form elements
+const userName2 = document.getElementById('userName2');
+// const designation2 = document.getElementById('designation2');
+// const currentWork2 = document.getElementById('current-work2');
+// const skills2 = document.getElementById('skills2');
+// const project2 = document.getElementById('project2');
+// const description2 = document.getElementById('description2');
+const gitHub2 = document.getElementById('gitHub2');
+const linkedIn2 = document.getElementById('linkedIn2');
+const twitter2 = document.getElementById('twitter2');
+const linkTree2 = document.getElementById('linkTree2');
+const recipientName2 = document.getElementById('recipientName2');
+const recipientMail2 = document.getElementById('recipientMail2');
+
+// Add event listener to the form submit button
+formSecVoice.addEventListener('submit', (event) => {
+  // Prevent default form submission
+  event.preventDefault();
+  
+  // Check if name is entered
+  if (userName2.value.trim() === '') {
+    alert('Please enter your name');
+    userName2.focus();
+    return;
+  }
+  
+  
+  
+
+  
+  // Check if skills are entered
+//   if (description2.value.trim() === '') {
+//     alert('Please enter your skills');
+//     skills2.focus();
+//     return;
+//   }
+  
+  // Check if recipient name is entered
+  if (recipientName2.value.trim() === '') {
+    alert('Please enter recipient name');
+    recipientName2.focus();
+    return;
+  }
+  
+  // Check if recipient mail is entered and valid
+  if (recipientMail2.value.trim() === '') {
+    alert('Please enter recipient mail');
+    recipientMail2.focus();
+    return;
+  } else {
+    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!recipientMail2.value.trim().match(mailFormat)) {
+      alert('Please enter a valid email address');
+      recipientMail2.focus();
+      return;
+    }
+  }
+  
+  // If all fields are valid, submit the form
+  formSecVoice.submit();
+});
+
+
+function validURL(url) {
+    const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+        '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+    return !!pattern.test(url);
+}
+
+function validEmail(email) {
+    const pattern = /^\S+@\S+\.\S+$/;
+    return pattern.test(email);
+}
+
+
+function openVoiceForm(){
+    if(!voiceFormOpen){
+        voiceForm.style.display = 'flex';
+        voiceFormOpen = true;
+    }
+    else{
+        voiceForm.style.display = 'none';
+        voiceFormOpen = false;
+    }
+
+}
+const submitBtn = document.getElementById("submit-btn");
+const formSex = document.getElementById('form-sec');
+
+const voiceBtn = document.getElementById('voice-btn');
+formSex.addEventListener('submit', (event) => {
+    formSec.style.display = "none";
+    formSecVoice.style.display = "none";
+    voiceBtn.style.display = "none";
+    loaders.style.display = "flex";
+})
+
+formSecVoice.addEventListener('submit', (event)=>{
+    formSec.style.display = "none";
+    formSecVoice.style.display = "none";
+    voiceBtn.style.display = "none";
+    loaders.style.display = "flex";
+})
+    
+</script>
+</html>
+
