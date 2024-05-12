@@ -1,5 +1,5 @@
 const { Configuration, OpenAIApi } = require('openai');
-
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 const path = require('path');
 const bodyParser = require('body-parser');
 const express = require('express')
@@ -7,7 +7,7 @@ const express = require('express')
 const app = express();
 require('dotenv').config();
 
-const ApiKey = process.env.api_key;
+const ApiKey = "AIzaSyB77yA1NZ5jkW9XI8vobhwAclO3HBsPJnk";
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({urlencoded: false}));
 
 const configuration = new Configuration({
-    apiKey: ApiKey,
+    apiKey: "AIzaSyB77yA1NZ5jkW9XI8vobhwAclO3HBsPJnk",
 });
 
 let port = process.env.PORT || 3001;
@@ -93,14 +93,12 @@ app.listen(port, ()=>{
     console.log(`listening port ${port}`);
 })
 const runPrompt = async (_prompt)=>{
-    
-
-    const response = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: _prompt,
-        max_tokens: 2000,
-        temperature: 1
-    })
-    return (response.data.choices[0].text);    
+    const genAI = new GoogleGenerativeAI(ApiKey);
+    const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+    const prompt = _prompt
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+  const text = response.text();
+    return (text);    
 }
 
